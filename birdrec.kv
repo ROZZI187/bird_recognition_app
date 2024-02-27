@@ -1,0 +1,58 @@
+<MDScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+
+        MDBoxLayout:
+            orientation: "horizontal"
+            size_hint_y: None
+            height: "64dp"
+            padding: "8dp"
+            pos_hint: {"top": 1}
+            md_bg_color: 0.698, 0.847, 0.992, 1
+
+            MDLabel:
+                text: "ChirpCharm"
+                font_style: "H5"
+                halign: "center"
+
+            MDSwitch:
+                size_hint: None, None
+                pos_hint: {'center_y': 0.5, 'right': 1}
+                active: app.dark_mode
+                on_active: app.toggle_dark_mode()
+
+        Image:
+            source: "bird.png"
+            size_hint: None, None
+            size: "700dp", "300dp"
+            pos_hint: {"center_x": 0.5, "top": 0.92}
+
+        MDIconButton:
+            id: record_button
+            icon: "stop" if app.is_recording else "microphone"
+            on_release: app.toggle_recording(root.ids.record_button)
+            size_hint_x: None
+            width: "48dp"
+            opacity: 1
+            pos_hint: {"center_x": 0.5, "center_y": 0.3} 
+
+        MDLabel:
+            id: timer_label
+            text: "00:00"
+            halign: "center"
+            pos_hint: {"center_x": 0.5, "center_y": 0.2}
+            font_style: "H5"
+
+        MDBoxLayout:
+            orientation: "horizontal"
+            size_hint_y: None
+            height: "48dp"
+            padding: 8
+            spacing: 16
+            pos_hint: {"bottom": 1}
+            md_bg_color: 0.698, 0.847, 0.992, 1
+
+            MDIconButton:
+                icon: "home"
+                on_release:
+                    app.screen_manager.current = "main"
